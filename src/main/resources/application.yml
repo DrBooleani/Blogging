@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/bloggingdb
+    username: postgres
+    password: Developer100Senha!
+server:
+  port: 8080
