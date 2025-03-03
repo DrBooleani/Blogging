@@ -1,13 +1,13 @@
 CREATE TABLE tb_role (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(50)
+  name VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE tb_user (
   id SERIAL PRIMARY KEY,
   full_name VARCHAR(100) NOT NULL,
   email VARCHAR(200) NOT NULL UNIQUE,
-  password_hash VARCHAR(64) NOT NULL UNIQUE,
+  password_hash VARCHAR(64) NOT NULL,
   profile_url VARCHAR(255) DEFAULT 'user.png',
   role_id INT NOT NULL DEFAULT 1,
   FOREIGN KEY (role_id) REFERENCES tb_role(id)
