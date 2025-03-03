@@ -3,5 +3,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/bloggingdb
     username: postgres
     password: Developer100Senha!
+  main:
+    banner-mode: off
 server:
   port: 8080
