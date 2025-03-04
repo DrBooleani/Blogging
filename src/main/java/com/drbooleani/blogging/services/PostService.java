@@ -50,6 +50,14 @@ public class PostService {
 		this.postRepository.delete(post);
 	}
 	
+	public PostResponse updateThumbnail(Integer id, String newThumbnail) {
+	    var post = this.findPostById(id);
+	    post.setThumbnail(newThumbnail);
+	    var updatedPost = this.postRepository.save(post);
+	    return convertToPostResponse(updatedPost);
+	}
+
+	
 	private Post findPostById(Integer id) {
 		return this.postRepository.findById(id)
 				.orElseThrow(() -> new ResourceNotFoundException("Post was not found!"));

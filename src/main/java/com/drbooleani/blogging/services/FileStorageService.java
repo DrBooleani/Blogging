@@ -14,8 +14,7 @@ public class FileStorageService {
 	
 	@Value("${file.upload-dir}")
     private String uploadDir;
-	
-	// Método para armazenar a foto de perfil de usuário
+
 	public String storeProfilePhoto(MultipartFile file, Integer userId) throws IOException {
 		Path path = Paths.get(uploadDir, "profile-photos");
 		if (!Files.exists(path)) {
