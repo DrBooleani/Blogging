@@ -79,7 +79,7 @@ public class UserController {
 	public ResponseEntity<UserResponse> updateProfilePhoto(
 	        @PathVariable Integer id, 
 	        @RequestParam MultipartFile file) throws IOException {
-	    String profileUrl = fileStorageService.storeFile(file, id);
+	    String profileUrl = fileStorageService.storeProfilePhoto(file, id);
 	    UserResponse updatedUser = userService.updateProfilePhoto(id, profileUrl);
 	    return ResponseEntity.ok(updatedUser);
 	}

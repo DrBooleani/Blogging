@@ -15,8 +15,9 @@ public class FileStorageService {
 	@Value("${file.upload-dir}")
     private String uploadDir;
 	
-	public String storeFile(MultipartFile file, Integer userId) throws IOException {
-		Path path = Paths.get(uploadDir);
+	// Método para armazenar a foto de perfil de usuário
+	public String storeProfilePhoto(MultipartFile file, Integer userId) throws IOException {
+		Path path = Paths.get(uploadDir, "profile-photos");
 		if (!Files.exists(path)) {
 			Files.createDirectories(path);
 		}
@@ -26,5 +27,17 @@ public class FileStorageService {
 		Files.copy(file.getInputStream(), targetLocation);
 		return fileName;
 	}
-
+	
+	public String storePostThumbnail(MultipartFile file, String post) throws IOException {
+		Path path = Paths.get(uploadDir, "post-thumbnails");
+		if (!Files.exists(path)) {
+			Files.createDirectories(path);
+		}
+		
+		String fileName = post + "_" + file.getOriginalFilename();
+		Path targetLocation = path.resolve(fileName);
+		
+		Files.copy(file.getInputStream(), targetLocation);
+		return fileName;
+	}
 }
