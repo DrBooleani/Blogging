@@ -33,7 +33,7 @@ public class User implements Serializable {
 	private String passwordHash;
 	
 	@Column(name = "profile_url")
-	private String profile_url;
+	private String profileUrl;
 	
 	@ManyToOne
 	@JoinColumn(name = "role_id",referencedColumnName = "id")
@@ -43,12 +43,12 @@ public class User implements Serializable {
 		
 	}
 	
-	public User(Integer id, String fullName, String email, String passwordHash, String profile_url, Role role) {
+	public User(Integer id, String fullName, String email, String passwordHash, String profileUrl, Role role) {
 		this.id = id;
 		this.fullName = fullName;
 		this.email = email;
 		this.passwordHash = passwordHash;
-		this.profile_url = profile_url;
+		this.profileUrl = profileUrl;
 		this.role = role;
 	}
 
@@ -84,12 +84,12 @@ public class User implements Serializable {
 		this.passwordHash = passwordHash;
 	}
 
-	public String getProfile_url() {
-		return profile_url;
+	public String getProfileUrl() {
+		return profileUrl;
 	}
 
-	public void setProfile_url(String profile_url) {
-		this.profile_url = profile_url;
+	public void setProfileUrl(String profileUrl) {
+		this.profileUrl = profileUrl;
 	}
 
 	public Role getRole() {
@@ -102,7 +102,7 @@ public class User implements Serializable {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", fullName=" + fullName + ", email=" + email + ", profile_url=" + profile_url
+		return "User [id=" + id + ", fullName=" + fullName + ", email=" + email + ", profile_url=" + profileUrl
 				+ ", role=" + role + "]";
 	}
 	
