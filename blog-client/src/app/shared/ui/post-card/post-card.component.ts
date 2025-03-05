@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { PostPageResponse } from '../../interfaces/post/post-page-response';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { PostResponse } from '../../interfaces/post/post-response';
 
 @Component({
   selector: 'app-post-card',
@@ -10,6 +10,6 @@ import { RouterLink } from '@angular/router';
   styleUrl: './post-card.component.css'
 })
 export class PostCardComponent {
-  @Input() post: PostPageResponse | null = null;
+  @Input() post: PostResponse | null = null;
 
 }

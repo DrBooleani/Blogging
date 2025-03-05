@@ -5,5 +5,9 @@ export const routes: Routes = [
   {
     path: '',
     component: HomeComponent
+  },
+  {
+    path: 'posts',
+    loadChildren: () => import('./pages/post/post.routes').then(r => r.POST_ROUTES)
   }
 ];

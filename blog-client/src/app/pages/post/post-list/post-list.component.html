@@ -1,0 +1,27 @@
+<div class="container mt-5">
+  <div *ngIf="posts$ | async as posts; else loading">
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let post of posts">
+        <app-post-card [post]="post"></app-post-card>
+      </div>
+    </div>
+
+    <nav *ngIf="totalPages > 0">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 0">
+          <button class="page-link" (click)="goToPreviousPage()" [disabled]="currentPage === 0">Anterior</button>
+        </li>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="i === currentPage">
+          <button class="page-link" (click)="goToPage(i)">{{ i + 1 }}</button>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
+          <button class="page-link" (click)="goToNextPage()" [disabled]="currentPage === totalPages - 1">Próxima</button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+
+  <ng-template #loading>
+    <p class="text-center">Loading posts...</p>
+  </ng-template>
+</div>

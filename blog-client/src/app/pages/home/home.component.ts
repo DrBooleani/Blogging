@@ -13,14 +13,14 @@ import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
-  posts$ = new BehaviorSubject<PostPageResponse[]>([]); 
+  posts$ = new BehaviorSubject<PostPageResponse['content']>([]); 
   private subscription: Subscription | null = null;
 
   constructor(private postService: PostService) {}
 
   ngOnInit(): void {
     this.subscription = this.postService.getAllPosts().subscribe({
-      next: posts => this.posts$.next(posts),
+      next: posts => this.posts$.next(posts.content),
       error: error => console.error('Error fetching posts', error)
     });
   }
