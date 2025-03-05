@@ -1,5 +1,7 @@
 package com.drbooleani.blogging.repositories;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -13,4 +15,5 @@ public interface UserRepository extends CrudRepository<User, Integer>, PagingAnd
 	@Query("SELECT u FROM User u WHERE u.fullName LIKE %:fullName%")
     Page<User> findByFullNameLike(@Param("fullName") String fullName, Pageable pageable);
 	boolean existsByEmail(String email);
+	Optional<User> findByEmail(String email);
 }
