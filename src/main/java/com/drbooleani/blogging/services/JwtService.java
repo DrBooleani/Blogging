@@ -56,9 +56,11 @@ public class JwtService {
         String roleName = user.getRole().getName();
 
         extraClaims.put("role", roleName);
+        extraClaims.put("id", user.getId());
         
         return Jwts
                 .builder()
+                .setId(user.getId().toString())
                 .setClaims(extraClaims)
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))

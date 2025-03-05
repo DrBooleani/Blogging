@@ -39,7 +39,7 @@ public class UserController {
 		this.userService = userService;
 		this.fileStorageService = fileStorageService;
 	}
-	
+
 	@GetMapping
 	public ResponseEntity<Page<UserResponse>> getAllUsers(
 	        @RequestParam(defaultValue = "10") int size,
@@ -54,7 +54,7 @@ public class UserController {
 	    Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortField));
 	    return ResponseEntity.ok(userService.getAllUsers(pageable));
 	}
-	
+
 	@GetMapping(path = "/{id}")
 	public ResponseEntity<UserResponse> getUserById(
 			@PathVariable Integer id
