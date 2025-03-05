@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import { HeaderComponent } from "./shared/navigation/header/header.component";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, HeaderComponent],
   template: `
-  <h1>Olá Mundo!</h1>
+    <app-header />
     <router-outlet />
   `,
   styles: [],
