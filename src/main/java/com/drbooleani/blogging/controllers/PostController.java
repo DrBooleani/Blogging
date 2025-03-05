@@ -63,7 +63,7 @@ public class PostController {
 			@RequestParam(required = false) MultipartFile thumbnailFile) throws IOException {
 		String thumbnail = (thumbnailFile != null && !thumbnailFile.isEmpty())
 				? fileStorageService.storePostThumbnail(thumbnailFile, "post-" + System.currentTimeMillis())
-				: "default-thumb.jpg";
+				: "no-thumbnail.png";
 
 		PostRequest postRequest = new PostRequest(request.title(), thumbnail, request.content(), request.category(),
 				request.tags());
