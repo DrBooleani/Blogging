@@ -37,6 +37,7 @@ public class SecurityConfig {
     	http
     	  .csrf(csrf -> csrf.disable())
     	  .authorizeHttpRequests(authz -> authz
+    			  .requestMatchers("/uploads/**").permitAll()
     			  .requestMatchers(HttpMethod.POST, "/api/v1/auth/**").permitAll()
                   .requestMatchers(HttpMethod.GET, getPermitAllUris().toArray(new String[0])).permitAll()
                   .requestMatchers(HttpMethod.POST, "/api/v1/user").permitAll()
