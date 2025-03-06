@@ -22,13 +22,13 @@
     <ul class="navbar-nav" [ngSwitch]="isLoggedIn">
       <ng-container *ngSwitchCase="false">
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" routerLink="/login">
+          <a class="nav-link d-flex align-items-center" routerLink="/auth/login">
             <fa-icon [icon]="faUser" class="me-2"></fa-icon>
             <span>Login</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" routerLink="/register">
+          <a class="nav-link d-flex align-items-center" routerLink="/auth/register">
             <fa-icon [icon]="faUserPlus" class="me-2"></fa-icon>
             <span>Register</span>
           </a>
@@ -37,13 +37,13 @@
   
       <ng-container *ngSwitchCase="true">
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" routerLink="/profile">
+          <a class="nav-link d-flex align-items-center" routerLink="/auth/profile">
             <fa-icon [icon]="faCircleUser" class="me-2"></fa-icon>
             <span>Profile</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link d-flex align-items-center" routerLink="/logout">
+          <a class="nav-link d-flex align-items-center" (click)="logout()">
             <fa-icon [icon]="faRightFromBacket" class="me-2"></fa-icon>
             <span>Logout</span>
           </a>

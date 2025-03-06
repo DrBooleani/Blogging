@@ -7,11 +7,14 @@ import { FooterComponent } from "./shared/navigation/footer/footer.component";
   selector: 'app-root',
   imports: [RouterOutlet, HeaderComponent, FooterComponent],
   template: `
-    <app-header />
-    <router-outlet />
-    <app-footer />
+    <div class="d-flex flex-column min-vh-100">
+      <app-header></app-header>
+      <div class="flex-grow-1">
+        <router-outlet></router-outlet>
+      </div>
+      <app-footer></app-footer>
+    </div>
   `,
   styles: [],
 })
-export class AppComponent {
-}
+export class AppComponent {}

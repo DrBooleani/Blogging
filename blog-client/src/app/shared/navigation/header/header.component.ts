@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationLink } from '../../interfaces/navigation-link';
-import { NgFor, NgSwitch, NgSwitchCase } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -11,6 +10,8 @@ import { faUser } from '@fortawesome/free-solid-svg-icons/faUser';
 import { faUserPlus } from '@fortawesome/free-solid-svg-icons/faUserPlus';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons/faCircleUser';
 import { faRightFromBracket } from '@fortawesome/free-solid-svg-icons/faRightFromBracket';
+import { AuthStateService } from '../../services/auth-state.service';
+import { CommonModule, NgFor, NgIf } from '@angular/common';
 
 const icons = [
   faHome,
@@ -19,9 +20,9 @@ const icons = [
 
 @Component({
   selector: 'app-header',
-  imports: [NgFor, NgSwitch, NgSwitchCase, RouterLink, RouterLinkActive, FontAwesomeModule],
+  imports: [RouterLink, RouterLinkActive, FontAwesomeModule, CommonModule],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.css'
+  styleUrls: ['./header.component.css'],
 })
 export class HeaderComponent implements OnInit {
   isLoggedIn: boolean = false;
@@ -32,7 +33,20 @@ export class HeaderComponent implements OnInit {
   faCircleUser = faCircleUser;
   faRightFromBacket = faRightFromBracket;
 
+  constructor(private authStateService: AuthStateService) {}
+
   ngOnInit(): void {
+    this.isLoggedIn = this.authStateService.getLoginState();
+    this.updateNavigationLinks();
+  }
+
+  ngAfterContentInit() {
+    console.log(this.isLoggedIn);
+    
+    this.isLoggedIn = this.authStateService.getLoginState();
+  }
+
+  updateNavigationLinks(): void {
     this.navigationLinks = [
       {
         label: 'Home',
@@ -47,4 +61,8 @@ export class HeaderComponent implements OnInit {
     ];
   }
 
+  logout(): void {
+    this.authStateService.logout();
+    window.location.href = '/';
+  }
 }
