@@ -1,0 +1,27 @@
+<div class="card rounded-lg mt-4 shadow-sm">
+  <div class="card-body">
+    <h5 class="card-title mb-4 text-center">Comments</h5>
+
+    <div *ngIf="isLoggedIn" class="mb-4">
+      <textarea [(ngModel)]="newCommentContent" class="form-control" rows="4" placeholder="Write a comment..." style="resize: none;"></textarea>
+      <button (click)="submitComment()" class="btn btn-primary mt-3 w-100">Submit Comment</button>
+    </div>
+
+    <div *ngIf="comments.length > 0; else noComments" class="mt-4">
+      <div *ngFor="let comment of comments" class="comment-item mb-4 p-3 rounded-lg border border-light shadow-sm">
+        <div class="d-flex justify-content-between mb-2">
+          <div class="d-flex align-items-center">
+            <img *ngIf="comment.profilePicture" [src]="uploads + comment.profilePicture" alt="Profile Picture" class="rounded-circle" width="40" height="40" />
+            <strong class="ms-2">{{ comment.fullName }}</strong>
+            <small class="text-muted ms-2">{{ comment.createdAt | date:'short' }}</small>
+          </div>
+        </div>
+        <p class="comment-content mb-0">{{ comment.content }}</p>
+      </div>
+    </div>
+
+    <ng-template #noComments>
+      <p class="text-muted text-center">No comments yet.</p>
+    </ng-template>
+  </div>
+</div>
