@@ -26,4 +26,9 @@ export class ProfileService {
       })
     );
   }
+
+  createUser(fullName: string, email: string, password: string): Observable<any> {
+    const userRequest = { fullName, email, password };
+    return this.http.post<any>(`${this.apiUrl}`, userRequest);
+  }
 }
