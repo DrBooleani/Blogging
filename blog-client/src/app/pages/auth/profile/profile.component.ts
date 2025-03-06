@@ -3,16 +3,19 @@ import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from 'jwt-decode';
 import { ProfileService } from '../../../shared/services/profile.service';
 import { NgIf } from '@angular/common';
+import { UpdateProfilePhotoComponent } from './update-profile-photo/update-profile-photo.component';
+import { UpdatePasswordComponent } from './update-password/update-password.component';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css'],
-  imports: [NgIf]
+  imports: [NgIf, UpdateProfilePhotoComponent, UpdatePasswordComponent]
 })
 export class ProfileComponent implements OnInit {
   userProfile: any = null;
   error: string | null = null;
+  currentView: string = 'profile'; 
 
   constructor(
     private profileService: ProfileService,
@@ -43,11 +46,15 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  onUpdateProfilePicture() {
-
+  showProfile() {
+    this.currentView = 'profile';
   }
 
-  onChangePassword() {
+  showUpdateProfilePhoto() {
+    this.currentView = 'update-profile-photo';
+  }
 
+  showUpdatePassword() {
+    this.currentView = 'update-password';
   }
 }
