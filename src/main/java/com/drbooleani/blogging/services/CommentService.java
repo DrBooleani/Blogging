@@ -85,7 +85,7 @@ public class CommentService {
 	}
 
 	private CommentPageResponse convertToPageResponse(Comment comment) {
-		return new CommentPageResponse(comment.getId(), comment.getContent(), comment.getUser().getFullName(),
+		return new CommentPageResponse(comment.getId(), comment.getContent(), comment.getUser().getId(), comment.getUser().getFullName(),
 				comment.getUser().getProfileUrl(), comment.getCreatedAt(), comment.getUpdatedAt());
 	}
 

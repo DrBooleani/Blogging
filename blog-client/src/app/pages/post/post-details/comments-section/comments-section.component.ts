@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core'; 
 import { CommentResponse } from '../../../../shared/interfaces/comment/comment-response';
 import { CommentService } from '../../../../shared/services/comment.service';
 import { AuthService } from '../../../../shared/services/auth.service';
@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, FormsModule]
 })
 export class CommentsSectionComponent implements OnInit {
+  userId: number = 0;
   @Input() postId!: number;
   comments: CommentResponse[] = [];
   newCommentContent: string = '';
@@ -25,6 +26,7 @@ export class CommentsSectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.isLoggedIn = this.authService.isLoggedIn();
+    this.userId = this.authService.getUserIdFromToken();
     this.loadComments();
   }
 
@@ -51,5 +53,34 @@ export class CommentsSectionComponent implements OnInit {
         }
       });
     }
+  }
+
+  editComment(comment: CommentResponse): void {
+    comment.editing = true;
+  }
+
+  updateComment(comment: CommentResponse): void {
+    if (comment.content.trim()) {
+      this.commentService.updateComment(comment.id, comment.content).subscribe({
+        next: (updatedComment) => {
+          comment.content = updatedComment.content;
+          comment.editing = false;
+        },
+        error: (err) => {
+          console.error('Error updating comment:', err);
+        }
+      });
+    }
+  }
+
+  deleteComment(commentId: number): void {
+    this.commentService.deleteComment(commentId).subscribe({
+      next: () => {
+        this.comments = this.comments.filter(comment => comment.id !== commentId);
+      },
+      error: (err) => {
+        console.error('Error deleting comment:', err);
+      }
+    });
   }
 }
