@@ -74,7 +74,8 @@ public class SecurityConfig {
     private List<String> getPermitAllUris() {
         return List.of(
                 "/api/v1/post/**",
-                "/api/v1/comment/**"
+                "/api/v1/comment/**",
+                "/api/v1/user/**"
         );
     }
 }

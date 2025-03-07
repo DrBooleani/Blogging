@@ -1,1 +1,16 @@
-<p>recent-users works!</p>
+<div class="card bg-dark text-white shadow-sm">
+  <div class="card-header bg-secondary">
+    <h5 class="mb-0">Recent Users</h5>
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let user of users" class="list-group-item bg-dark text-white border-0">
+        <div class="d-flex justify-content-between">
+          <h6 class="text-warning">{{ user.fullName }}</h6>
+          <span class="badge bg-secondary">{{ user.role }}</span>
+        </div>
+        <p class="text-white mb-1">{{ user.email }}</p>
+      </li>
+    </ul>
+  </div>
+</div>

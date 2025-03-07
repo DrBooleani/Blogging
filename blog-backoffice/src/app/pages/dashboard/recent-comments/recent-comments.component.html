@@ -1,1 +1,16 @@
-<p>recent-comments works!</p>
+<div class="card bg-dark text-white shadow-sm">
+  <div class="card-header bg-secondary">
+    <h5 class="mb-0">Recent Comments</h5>
+  </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let comment of comments" class="list-group-item bg-dark text-white border-0">
+        <div class="d-flex justify-content-between">
+          <h6 class="text-primary">{{ comment.fullName }} commented on: {{ comment.postTitle }}</h6>
+        </div>
+        <p class="mb-1">{{ comment.content }}</p>
+        <small class="text-muted">{{ comment.createdAt | date }}</small>
+      </li>
+    </ul>
+  </div>
+</div>

@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
-
+import { CommonModule } from '@angular/common';
+import { Component, Input } from '@angular/core';
+import { UserResponse } from '../../../shared/interfaces/user-response';
 @Component({
   selector: 'app-recent-users',
-  imports: [],
   templateUrl: './recent-users.component.html',
-  styleUrl: './recent-users.component.css'
+  styleUrls: ['./recent-users.component.css'],
+  imports: [CommonModule]
 })
 export class RecentUsersComponent {
-
+  @Input() users: UserResponse[] = [];
 }

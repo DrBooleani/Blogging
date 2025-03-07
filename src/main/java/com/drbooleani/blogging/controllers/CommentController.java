@@ -26,6 +26,19 @@ public class CommentController {
         this.commentService = commentService;
     }
 
+    @GetMapping
+    public ResponseEntity<Page<CommentPageResponse>> getAllComments(
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "createdAt,desc") String sort
+    ) {
+    	String[] sortParams = sort.split(",");
+        String sortField = sortParams[0];
+        Sort.Direction direction = sortParams.length > 1 && "asc".equalsIgnoreCase(sortParams[1]) ? Sort.Direction.ASC : Sort.Direction.DESC;
+        Pageable pageable = PageRequest.of(page, size, Sort.by(direction, sortField));
+        return ResponseEntity.ok(this.commentService.getAllComments(pageable));
+    }
+    
     @GetMapping("/post/{postId}")
     public ResponseEntity<Page<CommentPageResponse>> getCommentsByPost(@PathVariable Integer postId,
                                                                         @RequestParam(defaultValue = "10") int size,

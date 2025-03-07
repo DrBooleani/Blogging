@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { PostPageResponse } from '../../../shared/interfaces/post-page-response';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-recent-posts',
-  imports: [],
   templateUrl: './recent-posts.component.html',
-  styleUrl: './recent-posts.component.css'
+  styleUrls: ['./recent-posts.component.css'],
+  imports: [CommonModule]
 })
 export class RecentPostsComponent {
-
+  @Input() posts: PostPageResponse = { content: [], page: { size: 0, number: 0, totalElements: 0, totalPages: 0 } };
 }
