@@ -1,0 +1,40 @@
+<div class="container mt-5" *ngIf="post; else loading">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow-lg border-0 rounded-lg">
+        <img [src]="post.thumbnail" class="card-img-top rounded-top" alt="Post Thumbnail">
+        <div class="card-body">
+          <h1 class="card-title text-center mb-4 text-dark">{{ post.title }}</h1>
+          <div class="d-flex justify-content-between text-muted mb-4">
+            <p><small>Category: <strong>{{ post.category }}</strong></small></p>
+            <p>
+              <small>Tags: 
+                <span *ngFor="let tag of post.tags; let i = index">
+                  <span *ngIf="i > 0">, </span>
+                  <span class="badge rounded-pill bg-info text-dark">{{ tag }}</span>
+                </span>
+              </small>
+            </p>
+          </div>
+          
+          <div class="post-content mb-4" [innerHTML]="post.content"></div>
+          
+          <div class="text-center">
+            <a routerLink="/" class="btn btn-lg btn-primary rounded-pill">Back to All Posts</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <app-comment-section [postId]="post.id"></app-comment-section>
+</div>
+
+<ng-template #loading>
+  <div class="text-center mt-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <p class="mt-3 text-muted">Loading post...</p>
+  </div>
+</ng-template>

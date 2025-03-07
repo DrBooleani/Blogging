@@ -1,0 +1,55 @@
+<nav class="navbar navbar-dark navbar-expand-lg navbar-light bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">
+      Blogging
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li *ngFor="let link of navigationLinks" class="nav-item">
+          <a class="nav-link" [routerLink]="link.url" routerLinkActive="active">
+            <fa-icon [icon]="link.icon"></fa-icon>
+            <span class="ms-1">{{ link.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="d-inline-flex justify-content-end">
+    <ul class="navbar-nav" [ngSwitch]="isLoggedIn">
+      <ng-container *ngSwitchCase="false">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" routerLink="/auth/login">
+            <fa-icon [icon]="faUser" class="me-2"></fa-icon>
+            <span>Login</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" routerLink="/auth/register">
+            <fa-icon [icon]="faUserPlus" class="me-2"></fa-icon>
+            <span>Register</span>
+          </a>
+        </li>
+      </ng-container>
+  
+      <ng-container *ngSwitchCase="true">
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" routerLink="/auth/profile">
+            <fa-icon [icon]="faCircleUser" class="me-2"></fa-icon>
+            <span>Profile</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link d-flex align-items-center" (click)="logout()">
+            <fa-icon [icon]="faRightFromBacket" class="me-2"></fa-icon>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  
+</nav>

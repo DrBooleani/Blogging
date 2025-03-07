@@ -1,0 +1,31 @@
+<div class="container my-5">
+  <div *ngIf="error" class="alert alert-danger text-center">
+    {{ error }}
+  </div>
+
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <button class="list-group-item list-group-item-action" (click)="showUpdateProfilePhoto()">Update Profile Picture</button>
+        <button class="list-group-item list-group-item-action" (click)="showUpdatePassword()">Change Password</button>
+        <button class="list-group-item list-group-item-action" (click)="showProfile()">View Profile</button>
+      </div>
+    </div>
+
+    <div class="col-md-9">
+      <div *ngIf="currentView === 'profile'" class="card shadow-lg p-4 rounded-3 bg-light">
+        <div class="d-flex justify-content-center mb-4">
+          <div *ngIf="userProfile?.profileUrl">
+            <img [src]="userProfile.profileUrl" alt="Profile Picture" class="img-fluid rounded-circle border border-3 border-primary" style="max-width: 200px; height: auto;">
+          </div>
+        </div>
+
+        <h3 class="text-center mb-3 text-dark">{{ userProfile?.fullName }}</h3>
+        <p class="text-center text-muted mb-3">{{ userProfile?.email }}</p>
+      </div>
+      
+      <app-update-profile-photo [userId]="userProfile.id" *ngIf="currentView === 'update-profile-photo'"></app-update-profile-photo>
+      <app-update-password [userId]="userProfile.id" *ngIf="currentView === 'update-password'"></app-update-password>
+    </div>
+  </div>
+</div>
